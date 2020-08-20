@@ -34,7 +34,14 @@ export default {
     flex: 1;
     text-align: center;
     height: 3rem;
-    font-size: 1rem;
+    font-size: 0.6rem;
+    color: #bcc3ca;
+    font-weight: 550;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
   .tab-bar-item img{
       height: 50%;

@@ -1,6 +1,11 @@
 <template>
   <div id="home_items">
-      <div class="small_items" v-for="item in itemList">{{item.title}}</div>
+    <div class="small_items" v-for="item in itemList">
+        <div>
+            <img :src="item.img">
+        </div>
+            {{item.title}}
+    </div>
   </div>
 </template>
 
@@ -30,5 +35,12 @@ export default {
         align-items: center;
         font-size: 0.8rem;
         flex: 1;
+        flex-direction:column;
+        flex-wrap: wrap;
+        color: #444;
+    }
+    .small_items img{
+        height: 2rem;
+        margin: 0.2rem;
     }
 </style>

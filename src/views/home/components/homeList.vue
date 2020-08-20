@@ -1,6 +1,6 @@
 <template>
   <div class="list_block">
-    <div class="list_items" v-for="item in tagsList">
+    <div class="list_items" v-for="item in acceptList" @click="toDetail">
       <div class="item_mainInfo">
         <div class="item_img">
           <img :src="item.img">
@@ -38,19 +38,21 @@
 <script>
 import {getHomeListdata} from '@/network/home';
 export default {
+  props:{
+    acceptList:Array
+  },
   data(){
     return{
       tagsList:[]
     }
   },
   created(){
-    getHomeListdata().then(res=>{
-      console.log(res);
-      this.tagsList = res.data.list;
-      for(let i = 0;i<this.tagsList.length;i++){
-        this.tagsList[i].img = require('@/assets/img/home/' + this.tagsList[i].img + '.jpg')
-      }
-    })
+    
+  },
+  methods:{
+    toDetail(){
+      this.$router.push('/detail')
+    }
   }
 }
 </script>
@@ -143,6 +145,6 @@ export default {
     padding: 0.1rem 0.2rem;
   }
   .item_bottom{
-    padding-top:0.6rem;
+    padding-top:0.4rem;
   }
 </style>

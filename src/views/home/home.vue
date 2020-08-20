@@ -53,43 +53,43 @@ export default {
             ],
             tagsList:[
                 {
-                    img:'',
+                    img:require('@/assets/img/home/xiawucha.png'),
                     title:'下午茶'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/shuiguo.png'),
                     title:'水果'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/yinpin.png'),
                     title:'甜品饮品'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/01maicaizuofan.png'),
                     title:'买菜'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/kuaidibenpaojisukuaijian.png'),
                     title:'跑腿代购'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/yimei.png'),
                     title:'丽人/医美'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/quan.png'),
                     title:'1折囤券'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/peisong.png'),
                     title:'配送减免'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/hanbao.png'),
                     title:'汉堡披萨'
                 },
                 {
-                    img:'',
+                    img:require('@/assets/img/home/leimupinleifenleileibie2-copy-copy.png'),
                     title:'全部分类'
                 },
             ]
