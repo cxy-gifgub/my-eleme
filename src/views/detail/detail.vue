@@ -16,22 +16,52 @@
         <div class="store_discountNum">1个优惠</div>
       </div>
     </div>
-    <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="点餐" name="first">点餐</el-tab-pane>
-      <el-tab-pane label="评价" name="second">评价</el-tab-pane>
-      <el-tab-pane label="商家" name="third">商家</el-tab-pane>
-    </el-tabs>
+    <div class="store_tags">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="点餐" name="first"></el-tab-pane>
+        <el-tab-pane label="评价" name="second">评价</el-tab-pane>
+        <el-tab-pane label="商家" name="third">商家</el-tab-pane>
+      </el-tabs>
+    </div>
+    <div class="detail_content">
+      <div class="left_bar"></div>
+        <div class="right_content">
+          <scroll class="item_scroll">
+              <detailItem :detailList="detailList"></detailItem>
+          </scroll>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
+import detailItem from '@/views/detail/detailItem'
+import scroll from '@/components/common/scroll/scroll'
+import {getStoreDetail} from '@/network/detail'; 
 export default {
+  components:{
+    detailItem,
+    scroll
+  },
   data(){
     return{
-      activeName: 'first'
+      activeName: 'first',
+      detailList:[]
     }
   },
+  created(){
+    this.getDetail()
+  },
   methods: {
+    getDetail(){
+      getStoreDetail().then(res=>{
+        let nowList = res.data
+        for(let i = 0;i<res.data.length;i++){
+          this.detailList[i] = nowList[i].list
+        }
+        console.log(this.detailList);
+      })
+    },
     handleClick(tab, event) {
       console.log(tab, event);
     }
@@ -40,6 +70,10 @@ export default {
 </script>
 
 <style>
+  .item_scroll{
+    height: 60vh;
+    overflow: hidden;
+  }
   .store_message{
     height: 6rem;
     width: 90%;
@@ -96,4 +130,19 @@ export default {
 
   }
   body{background-color: #fdfdfd;}
+  .store_tags{
+    padding: 0 1rem;
+  }
+  .detail_content{
+    display: flex;
+    justify-content: space-between;
+  }
+  .left_bar{
+    width: 5rem;
+    height: 70vh;
+    background-color: #bbb;
+  }
+  .right_content{
+    width: calc(100% - 5rem);
+  }
 </style>

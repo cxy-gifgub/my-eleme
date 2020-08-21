@@ -3,10 +3,10 @@ export function request(config) {
     console.log(config.urltype);
     let nowUrl = ''
     if (config.urltype == 1) {
-        nowUrl = 'http://localhost:3000'
+        nowUrl = 'http://localhost:3001'
     }
     if (config.urltype == 2) {
-        nowUrl = '/bilibiliapi'
+        nowUrl = 'http://localhost:3004'
     }
 
     const instance = axios.create({
