@@ -4,30 +4,92 @@
       "type":"推荐",
       "list":[
         {
+          "id":1,
+          "specification":1,
           "title":"仙草奶冻",
           "price":13,
           "sale":68,
           "img":"kda"
         },
         {
+          "id":2,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"燕麦奶茶",
           "price":11,
           "sale":61,
           "img":"kda"
         },
         {
+          "id":3,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"四季奶茶",
           "price":5,
           "sale":42,
           "img":"kda"
         },
         {
+          "id":4,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"波霸奶茶",
           "price":11,
           "sale":32,
           "img":"kda"
         },
         {
+          "id":5,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"秘制阿华田",
           "price":15,
           "sale":22,
@@ -39,30 +101,105 @@
       "type":"纯茶",
       "list":[
         {
+          "id":6,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"仙草奶冻",
           "price":13,
           "sale":68,
           "img":"kda"
         },
         {
+          "id":7,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"燕麦奶茶",
           "price":11,
           "sale":61,
           "img":"kda"
         },
         {
+          "id":8,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"四季奶茶",
           "price":5,
           "sale":42,
           "img":"kda"
         },
         {
+          "id":9,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"波霸奶茶",
           "price":11,
           "sale":32,
           "img":"kda"
         },
         {
+          "id":10,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"秘制阿华田",
           "price":15,
           "sale":22,
@@ -74,30 +211,105 @@
       "type":"心动",
       "list":[
         {
+          "id":11,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"仙草奶冻",
           "price":13,
           "sale":68,
           "img":"kda"
         },
         {
+          "id":12,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"燕麦奶茶",
           "price":11,
           "sale":61,
           "img":"kda"
         },
         {
+          "id":13,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"四季奶茶",
           "price":5,
           "sale":42,
           "img":"kda"
         },
         {
+          "id":14,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"波霸奶茶",
           "price":11,
           "sale":32,
           "img":"kda"
         },
         {
+          "id":15,
+          "specification":2,
+          "specification_info":[{
+            "type":"甜度",
+            "list":["全糖","半糖","少糖"]
+          },
+          {
+            "type":"温度",
+            "list":["少冰","标准冰","多冰","常温","去冰"]
+          },
+          {
+            "type":"加料",
+            "list":["椰果","珍珠","薏米","芋圆"]
+          }
+        ],
           "title":"秘制阿华田",
           "price":15,
           "sale":22,

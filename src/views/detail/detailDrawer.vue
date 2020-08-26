@@ -8,19 +8,12 @@
       <div class="goods_block">
         <div class="goods_img"><img src=""></div>
         <div class="goods_info">
-          <div class="goods_name">名字</div>
+          <div class="goods_name">{{goodInfo.title}}</div>
           <div class="goods_hadChoose">已选</div>
-          <div class="goods_price">￥13.8</div>
+          <div class="goods_price">￥{{goodInfo.price}}</div>
         </div>
       </div>
-      <div class="choose_block">
-        <div class="choose_tags">选标签</div>
-        <div class="goods_choose_item">
-          <div class="choose_small">
-            芜湖
-          </div>
-        </div>
-      </div>
+      <goodsSpeTags :tagsList="goodInfo.specification_info"/>
       <div class="finish_btn">
         选好了
       </div>
@@ -29,21 +22,30 @@
 </template>
 
 <script>
+import goodsSpeTags from '@/views/detail/goodsSpeTags'
 export default {
-    data() {
-      return {
-        drawer: false,
-        direction: 'btt',
-        size:'85%'
-      }
-    },
-    methods: {
-      handleOn(index){
-        console.log(index);
-        this.drawer = true
-      }
+  components:{
+    goodsSpeTags
+  },
+  data() {
+    return {
+      drawer: false,
+      direction: 'btt',
+      size:'85%',
+      goodInfo:{}
     }
-  };
+  },
+  created(){
+  
+  },
+  methods: {
+    handleOn(index){
+      console.log(index);
+      this.goodInfo = index;
+      this.drawer = true
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -89,33 +91,14 @@ export default {
     font-weight: 550;
     margin-top: auto;
   }
-  .goods_choose_item{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .choose_small{
-    min-width: 30%;
-    max-width: 30%;
-    margin: 0.2rem 0.3rem;
-    flex: 1;
-    height: 2rem;
-    background-color: #eee;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-  }
+
   .choose_tags{
     color: #111;
     font-size: 1rem;
     font-weight: 550;
     margin: 0.2rem;
   }
-  .choose_block{
-    padding: 1rem;
-  }
+
   .finish_btn{
     background-color: var(--ele-color);
     color: #fff;
@@ -130,5 +113,8 @@ export default {
     border-radius: 1rem;
     left: 50%;
     margin-left: -45%;
+  }
+  .el-drawer__open .el-drawer.btt{
+    outline: none;
   }
 </style>

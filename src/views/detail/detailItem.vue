@@ -10,7 +10,8 @@
           <div class="detail_item_sale">月售{{item.sale}}</div>
           <div class="detail_item_price">
             <span class="detail_item_money">${{item.price}}</span>
-            <span class="detail_choose" @click="dropDrawer(index)">选规格</span>
+            <span v-if="item.specification === 2" class="detail_choose" @click="chooseType(item)">选规格</span>
+            <span v-else class="detail_choose">＋</span>
           </div>
         </div>
       </div>
@@ -38,12 +39,12 @@ export default {
     this.goodList = this.detailList.list
   },
   methods:{
-    chooseType(){
-      this.$emit('chooseType');
+    chooseType(index){
+      this.$emit('chooseType',index);
     },
-    dropDrawer(index){
-      this.$refs.drawer.handleOn(index)
-    }
+    // dropDrawer(index){
+    //   this.$refs.drawer.handleOn(index)
+    // }
   }
 }
 </script>

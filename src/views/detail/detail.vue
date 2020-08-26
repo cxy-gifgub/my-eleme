@@ -28,7 +28,7 @@
             <div class="right_content">
               <scroll class="item_scroll" ref="scroll">
                 <div v-if="ready" v-for="(item,index) in detailList" ref="items">
-                  <detailItem :detailList="item" ></detailItem>
+                  <detailItem :detailList="item" @chooseType="dropDrawer"></detailItem>
                 </div>
               </scroll>
             </div>
@@ -38,7 +38,8 @@
         <el-tab-pane label="商家" name="third">商家</el-tab-pane>
       </el-tabs>
     </div>
-    <detailDrawer ref="drawer"></detailDrawer>
+    <detailDrawer v-if="detailList" ref="drawer" :goodList="gogo"></detailDrawer>
+    <detailToast/>
   </div>
 </template>
 
@@ -61,7 +62,8 @@ export default {
       detailList:[],
       ready:false,
       themeTopYs:[],
-      currentIndex:0
+      currentIndex:0,
+      gogo:['1','2','3']
     }
   },
   created(){
@@ -86,10 +88,13 @@ export default {
       this.currentIndex = index;
       this.$refs.scroll.scroll.scrollTo(0,-this.themeTopYs[index],500)
     },
+    dropDrawer(index){
+      this.$refs.drawer.handleOn(index)
+    }
     
   },
   updated(){
-    if(this.themeTopYs.length>=this.detailList.length)return
+    if(this.themeTopYs.length>=this.detailList.length)returnks
     for(let i=0;i<this.detailList.length;i++){
       this.themeTopYs.push(this.$refs.items[i].offsetTop)
     }
@@ -98,6 +103,9 @@ export default {
 </script>
 
 <style>
+*{
+  outline: none!important;
+}
   #detail_block{
     letter-spacing: 1px;
   }
