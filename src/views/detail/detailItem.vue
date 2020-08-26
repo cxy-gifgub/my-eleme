@@ -1,22 +1,49 @@
 <template>
 <div>
-  <div v-for="item in detailList">
-    <detailSmallItem :list="item"></detailSmallItem>
-  </div>
+    <div>
+      <div class="goods_tags">{{detailList.type}}</div>
+      <div class="detail_item" v-for="(item,index) in goodList">
+        <div class="detail_item_img"><img :src="require('@/assets/img/home/kda.jpg')"></div>
+        <div class="detail_item_info">
+          <div class="detail_item_title">{{item.title}}</div>
+          <div class="detail_item_dec">四季奶茶搭配特选植脂末，经由黄金比例调和</div>
+          <div class="detail_item_sale">月售{{item.sale}}</div>
+          <div class="detail_item_price">
+            <span class="detail_item_money">${{item.price}}</span>
+            <span class="detail_choose" @click="dropDrawer(index)">选规格</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <detailDrawer ref="drawer"></detailDrawer>
 </div>
 </template>
 
 <script>
-import detailSmallItem from '@/views/detail/detailSmallItem'
+// import detailSmallItem from '@/views/detail/detailSmallItem'
+import detailDrawer from '@/views/detail/detailDrawer'
 export default {
   props:{
-    detailList:Array
+    detailList:Object
   },
   components:{
-    detailSmallItem
+    detailDrawer
+  },
+  data(){
+    return{
+      goodList:[]
+    }
   },
   created(){
-    console.log(this.detailList);
+    this.goodList = this.detailList.list
+  },
+  methods:{
+    chooseType(){
+      this.$emit('chooseType');
+    },
+    dropDrawer(index){
+      this.$refs.drawer.handleOn(index)
+    }
   }
 }
 </script>
@@ -72,5 +99,13 @@ export default {
     padding: 0.2rem 0.5rem;
     border-radius: 0.8rem;
     font-size: 0.6rem;
+  }
+  .goods_tags{
+    padding: 0.3rem 0.5rem;
+    text-align: left;
+    background-color: rgb(236, 236, 236);
+    color: #111;
+    font-size: 0.6rem;
+    font-weight: 550;
   }
 </style>

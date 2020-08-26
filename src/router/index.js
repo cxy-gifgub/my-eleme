@@ -37,7 +37,10 @@ const routes = [
     {
         name: "detail",
         path: '/detail',
-        component: detail
+        component: detail,
+        meta: {
+            navDontShow: true
+        }
     },
 ]
 

@@ -1,7 +1,7 @@
 {
   "detail":[
     {
-      "type":"tuijian",
+      "type":"推荐",
       "list":[
         {
           "title":"仙草奶冻",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "type":"chuncha",
+      "type":"纯茶",
       "list":[
         {
           "title":"仙草奶冻",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "type":"xindong",
+      "type":"心动",
       "list":[
         {
           "title":"仙草奶冻",

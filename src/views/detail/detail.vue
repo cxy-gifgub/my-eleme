@@ -18,19 +18,27 @@
     </div>
     <div class="store_tags">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="点餐" name="first"></el-tab-pane>
+        <el-tab-pane label="点餐" name="first">
+          <div class="detail_content">
+            <div class="left_bar">
+              <div class="left_category" v-for="(item,index) in detailList" @click="choosetags(index)" :class="{active_category:index === currentIndex}">
+                {{item.type}}
+              </div>
+            </div>
+            <div class="right_content">
+              <scroll class="item_scroll" ref="scroll">
+                <div v-if="ready" v-for="(item,index) in detailList" ref="items">
+                  <detailItem :detailList="item" ></detailItem>
+                </div>
+              </scroll>
+            </div>
+          </div>
+        </el-tab-pane>
         <el-tab-pane label="评价" name="second">评价</el-tab-pane>
         <el-tab-pane label="商家" name="third">商家</el-tab-pane>
       </el-tabs>
     </div>
-    <div class="detail_content">
-      <div class="left_bar"></div>
-        <div class="right_content">
-          <scroll class="item_scroll">
-              <detailItem :detailList="detailList"></detailItem>
-          </scroll>
-        </div>
-    </div>
+    <detailDrawer ref="drawer"></detailDrawer>
   </div>
 </template>
 
@@ -38,40 +46,75 @@
 import detailItem from '@/views/detail/detailItem'
 import scroll from '@/components/common/scroll/scroll'
 import {getStoreDetail} from '@/network/detail'; 
+import detailToast from '@/views/detail/detailToast'
+import detailDrawer from '@/views/detail/detailDrawer'
 export default {
   components:{
     detailItem,
-    scroll
+    scroll,
+    detailToast,
+    detailDrawer
   },
   data(){
     return{
       activeName: 'first',
-      detailList:[]
+      detailList:[],
+      ready:false,
+      themeTopYs:[],
+      currentIndex:0
     }
   },
   created(){
     this.getDetail()
   },
+  mounted(){
+    // this.themeTopYs.push(0);
+  },
   methods: {
     getDetail(){
       getStoreDetail().then(res=>{
         let nowList = res.data
-        for(let i = 0;i<res.data.length;i++){
-          this.detailList[i] = nowList[i].list
-        }
+        this.detailList = res.data
+        this.ready = true;
         console.log(this.detailList);
       })
     },
     handleClick(tab, event) {
       console.log(tab, event);
+    },
+    choosetags(index){
+      this.currentIndex = index;
+      this.$refs.scroll.scroll.scrollTo(0,-this.themeTopYs[index],500)
+    },
+    
+  },
+  updated(){
+    if(this.themeTopYs.length>=this.detailList.length)return
+    for(let i=0;i<this.detailList.length;i++){
+      this.themeTopYs.push(this.$refs.items[i].offsetTop)
     }
   }
 }
 </script>
 
 <style>
+  #detail_block{
+    letter-spacing: 1px;
+  }
+  .el-tabs__header{
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+  }
+  .left_category{
+    padding: 1rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #888;
+  }
   .item_scroll{
-    height: 60vh;
+    height: 70vh;
     overflow: hidden;
   }
   .store_message{
@@ -131,7 +174,7 @@ export default {
   }
   body{background-color: #fdfdfd;}
   .store_tags{
-    padding: 0 1rem;
+    
   }
   .detail_content{
     display: flex;
@@ -140,9 +183,17 @@ export default {
   .left_bar{
     width: 5rem;
     height: 70vh;
-    background-color: #bbb;
+    background-color: #f1f1f1;
   }
   .right_content{
     width: calc(100% - 5rem);
+  }
+  .active_category{
+    color: #111;
+    background-color: #fff;
+    font-weight: 550;
+  }
+  .el-tabs__nav-wrap::after{
+    background-color: #ffffff00;
   }
 </style>

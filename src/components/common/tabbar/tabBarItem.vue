@@ -18,7 +18,6 @@ export default {
       jump(){
         this.$router.push(this.path).catch(err => err),
         console.log("我是path",this.path);
-        
       }
     },
     computed:{

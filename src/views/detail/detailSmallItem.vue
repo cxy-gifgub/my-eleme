@@ -8,7 +8,7 @@
         <div class="detail_item_sale">月售85</div>
         <div class="detail_item_price">
           <span class="detail_item_money">$3.88</span>
-          <span class="detail_choose">选规格</span>
+          <span class="detail_choose" @click="chooseType">选规格</span>
         </div>
       </div>
     </div>
@@ -21,7 +21,12 @@ export default {
     list:Array
   },
   created(){
-    console.log('============');
+    
+  },
+  methods:{
+    chooseType(){
+      this.$emit('chooseType');
+    }
   }
 }
 </script>

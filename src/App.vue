@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <maintabbar></maintabbar>
+    <maintabbar v-if="!this.$route.meta.navDontShow"></maintabbar>
   </div>
 </template>
 
