@@ -1,6 +1,6 @@
 <template>
   <div id="toast">
-    <div class="toast_content">
+    <div class="toast_content" @click="show">
       <div class="t_img"><img src="@/assets/img/detail/shopping-bag.png"></div>
       <div class="toast_info">
         <div>未选购商品</div>
@@ -15,7 +15,11 @@
 
 <script>
 export default {
-
+  methods:{
+    show(){
+      this.$emit('showcart')
+    }
+  }
 }
 </script>
 

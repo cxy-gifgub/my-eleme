@@ -13,8 +13,10 @@
           <div class="goods_price">￥{{goodInfo.price}}</div>
         </div>
       </div>
-      <goodsSpeTags :tagsList="goodInfo.specification_info"/>
-      <div class="finish_btn">
+      <div v-for="list in goodInfo.specification_info">
+        <goodsSpeTags :tagsList="list" ref="goods" :key="id" />
+      </div>
+      <div class="finish_btn" @click="finish">
         选好了
       </div>
     </el-drawer>
@@ -32,7 +34,8 @@ export default {
       drawer: false,
       direction: 'btt',
       size:'85%',
-      goodInfo:{}
+      goodInfo:{},
+      id:+new Date()
     }
   },
   created(){
@@ -43,7 +46,28 @@ export default {
       console.log(index);
       this.goodInfo = index;
       this.drawer = true
-    }
+    },
+    finish(){
+      this.drawer = false;
+      let smalltags = [];
+      const product = {}
+      for(let i = 0;i < this.goodInfo.specification_info.length;i++){
+        if (this.$refs.goods[i].finish()) {
+          console.log(this.$refs.goods[i].finish());
+          smalltags.push(this.$refs.goods[i].finish())
+        }
+      }
+      product.title = this.goodInfo.title
+      product.price = this.goodInfo.price
+      product.tags = smalltags
+      product.id = this.goodInfo.id
+      this.$store.commit('addCart',product)
+      //重置小标签的值
+      this.reset()
+    },
+      reset() {
+        this.id = +new Date()
+      }
   }
 };
 </script>

@@ -38,8 +38,9 @@
         <el-tab-pane label="商家" name="third">商家</el-tab-pane>
       </el-tabs>
     </div>
-    <detailDrawer v-if="detailList" ref="drawer" :goodList="gogo"></detailDrawer>
-    <detailToast/>
+    <detailDrawer v-if="detailList" ref="drawer"></detailDrawer>
+    <detailToast @showcart="openCart" />
+    <detailCart ref="cart" />
   </div>
 </template>
 
@@ -49,12 +50,14 @@ import scroll from '@/components/common/scroll/scroll'
 import {getStoreDetail} from '@/network/detail'; 
 import detailToast from '@/views/detail/detailToast'
 import detailDrawer from '@/views/detail/detailDrawer'
+import detailCart from '@/views/detail/detailCart'
 export default {
   components:{
     detailItem,
     scroll,
     detailToast,
-    detailDrawer
+    detailDrawer,
+    detailCart
   },
   data(){
     return{
@@ -62,8 +65,7 @@ export default {
       detailList:[],
       ready:false,
       themeTopYs:[],
-      currentIndex:0,
-      gogo:['1','2','3']
+      currentIndex:0
     }
   },
   created(){
@@ -90,6 +92,9 @@ export default {
     },
     dropDrawer(index){
       this.$refs.drawer.handleOn(index)
+    },
+    openCart(){
+      this.$refs.cart.drawerOn()
     }
     
   },

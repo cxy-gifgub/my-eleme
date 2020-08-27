@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="choose_block" v-for="list in tagsList" :key="list.type">
-      <div class="choose_tags">{{list.type}}</div>
+    <div class="choose_block">
+      <div class="choose_tags">{{tagsList.type}}</div>
       <div class="goods_choose_item">
-        <div class="choose_small" v-for="(item,index) in list.list" :key="index" :class="{active_tags:index === currentIndex}" @click="changeTag(index)">{{item}}</div>
+        <div class="choose_small" v-for="(item,index) in tagsList.list" :key="index" :class="{active_tags:index === currentIndex}" @click="changeTag(index,item)">{{item}}</div>
       </div>
     </div>
   </div>
@@ -12,16 +12,23 @@
 <script>
 export default {
   props: {
-    tagsList: Array,
+    tagsList: Object,
   },
   data(){
       return{
-          currentIndex:0
+          currentIndex:-1,
+          tags:"",
+
       }
   },
   methods:{
-      changeTag(index){
+      changeTag(index,item){
           this.currentIndex = index
+          this.tags = item
+      },
+      finish(){
+        this.currentIndex = -1;
+        return this.tags
       }
   }
 };
