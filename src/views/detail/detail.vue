@@ -1,5 +1,9 @@
 <template>
   <div id="detail_block">
+    <NavBar>
+      <div slot="left" @click="back"><i class="el-icon-arrow-left"></i></div>
+      <div slot="center">店铺详情</div>
+    </NavBar>
     <div class="store_message">
       <div class="mess_top">
         <div class="store_main">
@@ -51,13 +55,15 @@ import {getStoreDetail} from '@/network/detail';
 import detailToast from '@/views/detail/detailToast'
 import detailDrawer from '@/views/detail/detailDrawer'
 import detailCart from '@/views/detail/detailCart'
+import NavBar from '@/components/navbar/NavBar'
 export default {
   components:{
     detailItem,
     scroll,
     detailToast,
     detailDrawer,
-    detailCart
+    detailCart,
+    NavBar
   },
   data(){
     return{
@@ -75,6 +81,9 @@ export default {
     // this.themeTopYs.push(0);
   },
   methods: {
+    back(){
+      this.$router.go(-1)
+    },
     getDetail(){
       getStoreDetail().then(res=>{
         let nowList = res.data
@@ -94,7 +103,11 @@ export default {
       this.$refs.drawer.handleOn(index)
     },
     openCart(){
-      this.$refs.cart.drawerOn()
+      if(this.$store.state.cartList.length > 0){
+        this.$refs.cart.drawerOn()
+      }
+      else return;
+
     }
     
   },

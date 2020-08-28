@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    cartList: []
+    cartList: [],
+    totalPrice: 0,
+    productCount:0
   },
   mutations: {
     addCart(state, payload) {
@@ -17,6 +19,36 @@ const store = new Vuex.Store({
       else {
         payload.count = 1;
         state.cartList.push(payload)
+      }
+      state.productCount += 1;
+      let total = 0;
+      for (let i = 0; i < state.cartList.length; i++) {
+        total += state.cartList[i].price * state.cartList[i].count;
+        state.totalPrice = total
+      }
+    },
+    delCart(state, del) {
+      if (state.cartList[del].count == 1) {
+        state.cartList.splice(del, 1);
+        state.productCount -= 1;
+      }
+      else {
+        state.productCount -= 1;
+        state.cartList[del].count -= 1;
+      }
+      let total = 0;
+      for (let i = 0; i < state.cartList.length; i++) {
+        total += state.cartList[i].price * state.cartList[i].count;
+        state.totalPrice = total
+      }
+    },
+    moreCart(state,more) {
+      state.cartList[more].count += 1;
+      state.productCount += 1;
+      let total = 0;
+      for (let i = 0; i < state.cartList.length; i++) {
+        total += state.cartList[i].price * state.cartList[i].count;
+        state.totalPrice = total
       }
     }
   }

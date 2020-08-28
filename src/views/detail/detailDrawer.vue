@@ -6,7 +6,7 @@
       :size="size"
       :with-header="false">
       <div class="goods_block">
-        <div class="goods_img"><img src=""></div>
+        <div class="goods_img"><img :src="require('@/assets/img/home/kda.jpg')"></div>
         <div class="goods_info">
           <div class="goods_name">{{goodInfo.title}}</div>
           <div class="goods_hadChoose">已选</div>
@@ -65,9 +65,10 @@ export default {
       //重置小标签的值
       this.reset()
     },
-      reset() {
-        this.id = +new Date()
-      }
+    reset() {
+      this.id = +new Date()
+    },
+    
   }
 };
 </script>

@@ -1,31 +1,39 @@
 <template>
-<transition name="fade" 
-  v-bind:css="false"
-  v-on:before-enter="beforeEnter"
-  v-on:enter="enter"
-  v-on:after-enter="afterEnter"
-  v-on:enter-cancelled="enterCancelled"
-
-  v-on:before-leave="beforeLeave"
-  v-on:leave="leave"
-  v-on:after-leave="afterLeave"
-  v-on:leave-cancelled="leaveCancelled"
-  >
-  <div v-if="show" id="toast_cart">
-    <div id="cart_block">
-      <div class="cart_item" v-for="list in cartList">
-        <div class="item_img"><img src=""></div>
-        <div class="item_info">
-          <div class="item_title">{{list.title}}</div>
-          <div class="item_spe">
-            <span  v-for="item in list.tags">/ {{item}} </span>
+<div>
+  <!-- 阴影遮罩 -->
+  <div class="shade_block" v-if="show" @click="drawerOn">
+  </div>
+  <!-- 过渡购物车 -->
+  <transition name="fade" 
+    v-bind:css="false"
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:before-leave="beforeLeave"
+    v-on:leave="leave"
+    >
+    <div v-if="show" id="toast_cart" ref="toast">
+        <div id="cart_block">
+          <div class="cart_item" v-for="(list,index) in cartList">
+            <div class="item_img">
+              <img :src="require('@/assets/img/home/kda.jpg')">
+            </div>
+            <div class="item_info">
+              <div class="item_title">{{list.title}}</div>
+              <div class="item_spe">
+                <span  v-for="item in list.tags">/ {{item}} </span>
+              </div>
+            </div>
+            <div class="item_count">
+              <i class="el-icon-remove" @click="decre(index)"></i>
+              <span >{{list.count}}</span>
+              <i class="el-icon-circle-plus"  @click="incre(index)"></i>
+            </div>
           </div>
         </div>
-        <div class="item_count"></div>
-      </div>
     </div>
-  </div>
-</transition>
+  </transition>
+
+</div>
 </template>
 
 <script>
@@ -34,68 +42,65 @@ export default {
   data() {
     return {
       cartList:[],
-      toastHeight:0,
-      show:false
+      show:false,
+      count: 1
     }
   },
   created(){
     this.cartList = this.$store.state.cartList;
     console.log(this.cartList);
-    this.toastHeight = this.cartList.length * 4 * 16
+    // this.toastHeight = this.cartList.length * 4 * 16
+  },
+  computed:{
+    toastHeight(){
+      return this.$store.state.cartList.length * 4 * 16
+    }
   },
   methods:{
     drawerOn(){
-      this.show =! this.show
+      this.show = !this.show
     },
     beforeEnter: function (el) {
-      // ...
+      el.style.height = 0;
     },
     // 当与 CSS 结合使用时
     // 回调函数 done 是可选的
     enter: function (el, done) {
-      // ...
-      console.log('enter');
       Velocity(el,
-        { height: this.toastHeight },
-        {
-          duration: 300,
-        }
+        { height: this.toastHeight},
+        {duration: 250,}
       )
       done()
     },
-    afterEnter: function (el) {
-      // ...
-    },
-    enterCancelled: function (el) {
-      // ...
-    },
-
-    // --------
-    // 离开时
-    // --------
-
     beforeLeave: function (el) {
-      // ...
+      el.style.height = this.toastHeight
     },
     // 当与 CSS 结合使用时
     // 回调函数 done 是可选的
     leave: function (el, done) {
-      // ...
-      console.log('leave');
       Velocity(el,
-        { height: this.toastHeight },
+        { height: 0 },
         {
-          duration: 1500,
+          duration: 250,
+          complete: function () {
+            done()
+          }
         }
       )
-      done()
     },
-    afterLeave: function (el) {
-      // ...
+    decre(index){
+      if(this.$store.state.cartList[index].count == 1){
+        this.$store.commit('delCart',index);
+        this.$refs.toast.style.height = this.$store.state.cartList.length * 4 * 16 + 'px';
+        if(this.$store.state.cartList.length == 0)this.show = !this.show;
+        return
+      }
+      else{
+        this.$store.commit('delCart',index);
+      }
     },
-    // leaveCancelled 只用于 v-show 中
-    leaveCancelled: function (el) {
-      // ...
+    incre(index){
+      this.$store.commit('moreCart',index);
     }
   }
 }
@@ -107,6 +112,17 @@ export default {
     height: 4rem;
     align-items: center;
   }
+  .cart_all{
+    position: relative;
+  }
+  .shade_block{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #4c6e8438;
+    z-index: 0;
+    top: 0;
+  }
   .item_img{
     height: 3.2rem;
     width: 3.2rem;
@@ -115,6 +131,7 @@ export default {
   .item_img img{
     height: 100%;
     width: 100%;
+    border-radius: 0.4rem;
   }
   .item_info{
     margin-left: 1rem;
@@ -130,6 +147,14 @@ export default {
   }
   .item_count{
     margin-left: auto;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  .item_count i{
+    color: var(--ele-color);
+    margin: 0 0.4rem;
+    font-size: 1.3rem;
   }
   #toast_cart{
     position: fixed;

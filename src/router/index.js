@@ -7,8 +7,7 @@ const category = () => import("@/views/category/category.vue")
 const cart = () => import("@/views/cart/cart.vue")
 const profile = () => import("@/views/profile/profile.vue")
 const detail = () => import("@/views/detail/detail.vue")
-
-
+const order = () => import("@/views/order/order.vue")
 const routes = [
     {
         path: '',
@@ -38,6 +37,14 @@ const routes = [
         name: "detail",
         path: '/detail',
         component: detail,
+        meta: {
+            navDontShow: true
+        }
+    },
+    {
+        name: "order",
+        path: '/order',
+        component: order,
         meta: {
             navDontShow: true
         }

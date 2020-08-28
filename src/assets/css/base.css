@@ -14,7 +14,7 @@ ul,li{
     margin: 0;
 }
 *{
-    font-family: "PingFang SC","Lantinghei SC","Helvetica Neue","Microsoft Yahei","Hiragino Sans GB","Microsoft Sans Serif","WenQuanYi Micro Hei","sans";
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 body{
     height: 100vh;
