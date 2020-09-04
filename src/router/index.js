@@ -8,6 +8,10 @@ const cart = () => import("@/views/cart/cart.vue")
 const profile = () => import("@/views/profile/profile.vue")
 const detail = () => import("@/views/detail/detail.vue")
 const order = () => import("@/views/order/order.vue")
+const address = () => import("@/views/address/address.vue")
+const address_new = () => import("@/views/address/addressNew.vue")
+const orderRemark = () => import("@/views/order/orderRemark.vue")
+const categoryList = () => import("@/views/category/categoryList.vue")
 const routes = [
     {
         path: '',
@@ -49,9 +53,42 @@ const routes = [
             navDontShow: true
         }
     },
+    {
+        name: "address",
+        path: '/address',
+        component: address,
+        meta: {
+            navDontShow: true
+        }
+    },
+    {
+        name: "address_new",
+        path: '/address_new',
+        component: address_new,
+        meta: {
+            navDontShow: true
+        }
+    },
+    {
+        name: "orderRemark",
+        path: '/orderRemark',
+        component: orderRemark,
+        meta: {
+            navDontShow: true
+        }
+    },
+    {
+        name: "categoryList",
+        path: '/categoryList',
+        component: categoryList,
+        meta: {
+            navDontShow: true
+        }
+    },
 ]
 
 const router = new VueRouter({
+    mode: 'history',
     routes
 })
 export default router

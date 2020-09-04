@@ -6,3 +6,9 @@ export function getStoreDetail() {
     urltype: 2
   })
 }
+export function getStoreEvaluate() {
+  return request({
+    url: '/eva',
+    urltype: 3
+  })
+}

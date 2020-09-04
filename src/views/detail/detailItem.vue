@@ -3,7 +3,7 @@
     <div>
       <div class="goods_tags">{{detailList.type}}</div>
       <div class="detail_item" v-for="(item,index) in goodList">
-        <div class="detail_item_img"><img :src="require('@/assets/img/home/kda.jpg')"></div>
+        <div class="detail_item_img"><img :src="item.img"></div>
         <div class="detail_item_info">
           <div class="detail_item_title">{{item.title}}</div>
           <div class="detail_item_dec">四季奶茶搭配特选植脂末，经由黄金比例调和</div>
@@ -37,6 +37,9 @@ export default {
   },
   created(){
     this.goodList = this.detailList.list
+    for(let i = 0;i<this.goodList.length;i++){
+      this.goodList[i].img = require('@/assets/img/detail/' + this.goodList[i].img + '.png')
+    }
   },
   methods:{
     chooseType(index){

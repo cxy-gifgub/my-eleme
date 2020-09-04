@@ -1,12 +1,14 @@
 import axios from 'axios'
 export function request(config) {
-    console.log(config.urltype);
     let nowUrl = ''
     if (config.urltype == 1) {
         nowUrl = 'http://localhost:3001'
     }
     if (config.urltype == 2) {
         nowUrl = 'http://localhost:3004'
+    }
+    if (config.urltype == 3) {
+        nowUrl = 'http://localhost:3000'
     }
 
     const instance = axios.create({

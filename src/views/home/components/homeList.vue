@@ -1,6 +1,6 @@
 <template>
   <div class="list_block">
-    <div class="list_items" v-for="item in acceptList" @click="toDetail">
+    <div class="list_items" v-for="item in acceptList.list" @click="toDetail(item)">
       <div class="item_mainInfo">
         <div class="item_img">
           <img :src="item.img">
@@ -39,7 +39,7 @@
 import {getHomeListdata} from '@/network/home';
 export default {
   props:{
-    acceptList:Array
+    acceptList:Object
   },
   data(){
     return{
@@ -50,8 +50,11 @@ export default {
     
   },
   methods:{
-    toDetail(){
-      this.$router.push('/detail')
+    toDetail(store_info){
+      this.$router.push({
+        path:'/detail',
+        query:{store_info:store_info}
+      }).catch(err => err)
     }
   }
 }

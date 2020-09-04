@@ -8,10 +8,13 @@
     </div>
     <div id="order_content">
       <div class="send_block">
-        <div class="send_address">
+        <div class="send_address" @click="chooseAddress">
+          <div v-if="!addressState" class="choose_address">
+            选择地址
+          </div>
           <div class="address_content">
-            <div class="address_info">水进城C座2605</div>
-            <div class="send_user">陈鑫宇 15651659508</div>
+            <div class="address_info">{{address.add}}{{address.add_number}}</div>
+            <div class="send_user">{{address.name}} {{address.phone}}</div>
           </div>
           <div class="more_block">
             <div class="choose_icon">
@@ -23,22 +26,26 @@
           <div slot="title">立即送出</div>
           <div slot="content">大约16:55送达</div>
         </orderItem>
-        <orderItem>
-          <div slot="title">支付宝</div>
-          <div slot="content">支付宝</div>
-        </orderItem>
+        <div @click="showDrawer">
+          <orderItem>
+            <div slot="title">支付方式</div>
+            <div slot="content">{{payment}}</div>
+          </orderItem>
+        </div>
       </div>
       <div class="cart_list">
-        <div class="cart_list_item">
+        <div class="cart_list_item" v-for="list in this.$store.state.cartList">
           <div class="item_img">
-            <img src="">
+            <img :src="list.img">
           </div>
           <div class="item_info">
-            <div class="info_title">标题</div>
-            <div class="info_tags">标签/标签</div>
-            <div class="info_count">x1</div>
+            <div class="info_title">{{list.title}}</div>
+            <div class="info_tags">
+              <span v-for="item in list.tags">{{item}}/</span>
+              </div>
+            <div class="info_count">x{{list.count}}</div>
           </div>
-          <div class="item_price">¥10</div>
+          <div class="item_price">¥{{list.price}}</div>
         </div>
         <div class="other_info">
           <div class="send_price">
@@ -63,14 +70,15 @@
         <el-divider></el-divider>
         <div class="price_block">
           <div class="total_price">
-            小计¥<span class="price_span">147</span>
+            小计¥<span class="price_span">{{this.$store.state.totalPrice + 3}}</span>
           </div>
         </div>
       </div>
       <div class="order_remarks">
-        <orderItem>
+        <orderItem @click.native="toRemark">
           <div slot="title">备注</div>
         </orderItem>
+        <div class="content_mark" v-if="remark">{{remark}}</div>
         <orderItem>
           <div slot="title">餐具份数</div>
         </orderItem>
@@ -81,12 +89,13 @@
     </div>
     <fiexdBar class="bottom_bar">
       <div class="pay_money" slot="center">
-        合计:<span class="money_num">¥147</span>
+        合计:<span class="money_num">¥{{this.$store.state.totalPrice + 3}}</span>
       </div>
       <div  slot="right">
         <span class="pay_btn">去支付</span>
       </div>
     </fiexdBar>
+    <orderDrawer ref="drawer" @check_pay="check_pay"></orderDrawer>
   </div>
 </template>
 
@@ -94,15 +103,56 @@
 import NavBar from '@/components/navbar/NavBar'
 import fiexdBar from '@/components/common/fixedBar/fiexdBar'
 import orderItem from '@/views/order/orderItem'
+import orderDrawer from '@/views/order/orderDrawer'
 export default {
   components:{
     NavBar,
     fiexdBar,
-    orderItem
+    orderItem,
+    orderDrawer
+  },
+  data(){
+    return{
+      address:{},
+      payment:'支付宝',
+      remark:'',
+      addressState:false
+    }
+  },
+  activated(){
+    this.getAddress()
+    this.getRemark()
+  },
+  created(){
+    
   },
   methods:{
     back(){
       this.$router.go(-1)
+    },
+    showDrawer(){
+      console.log('点击了');
+      this.$refs.drawer.showDrawer()
+    },
+    chooseAddress(){
+      this.$router.push('/address')
+    },
+    check_pay(pay){
+      this.payment = pay
+    },
+    toRemark(){
+      this.$router.push('/orderRemark')
+    },
+    getAddress(){
+      if(this.$route.query.address){
+      this.address = JSON.parse(this.$route.query.address)
+      this.addressState = true
+      }
+    },
+    getRemark(){
+      if(this.$route.query.remark){
+        this.remark = this.$route.query.remark
+      }
     }
   }
 }
@@ -186,7 +236,7 @@ export default {
 .cart_list_item{
   display: flex;
   align-items: center;
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
 }
 .item_img{
   height: 3rem;
@@ -196,6 +246,7 @@ export default {
 .item_img img{
   height: 100%;
   width: 100%;
+  border-radius: 0.5rem;
 }
 .info_title{
   color: #111;
@@ -252,7 +303,7 @@ export default {
   margin-left: auto;
 }
 .price_span{
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 550;
 }
 .pay_money{
@@ -277,5 +328,16 @@ export default {
 }
 .bottom_bar{
   background-color: #fff;
+}
+.content_mark{
+  padding: 1rem;
+  background-color: #f5f5f5;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  color: #888;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.choose_address{
+  color: var(--ele-color);
 }
 </style>

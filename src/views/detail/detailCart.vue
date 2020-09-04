@@ -15,7 +15,7 @@
         <div id="cart_block">
           <div class="cart_item" v-for="(list,index) in cartList">
             <div class="item_img">
-              <img :src="require('@/assets/img/home/kda.jpg')">
+              <img :src="list.img">
             </div>
             <div class="item_info">
               <div class="item_title">{{list.title}}</div>
@@ -48,8 +48,6 @@ export default {
   },
   created(){
     this.cartList = this.$store.state.cartList;
-    console.log(this.cartList);
-    // this.toastHeight = this.cartList.length * 4 * 16
   },
   computed:{
     toastHeight(){

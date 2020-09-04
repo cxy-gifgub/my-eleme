@@ -4,6 +4,7 @@
       "type":"fujin",
       "list":[
         {
+          "store_id":1,
           "img":"kda",
           "title":"POP/MILE-TEA",
           "score":5.0,
@@ -12,9 +13,11 @@
           "distance":1300,
           "start_send":15,
           "reply":"敲好吃的！！！",
-          "discount":"20减6"
+          "discount":"20减6",
+          "notice":"baddest do what the baddest we do"
         },
         {
+          "store_id": 2,
           "img": "apatea",
           "title":"阿帕基的下午茶",
           "score":4.8,
@@ -23,9 +26,11 @@
           "distance":1300,
           "start_send":15,
           "reply":"累了，困了，精神不振就喝阿帕茶",
-          "discount":"50减3"
+          "discount":"50减3",
+          "notice": "阿帕基，你己经做的很好了"
         },
         {
+          "store_id": 3,
           "img": "kaqyin",
           "title":"花京院粥铺",
           "score":3.6,
@@ -34,9 +39,11 @@
           "distance":1300,
           "start_send":15,
           "reply":"孩子喝了都说好！",
-          "discount":"专门给弱智儿童提供"
+          "discount":"专门给弱智儿童提供",
+          "notice": "孩子喝了智力会上升，甚至因为好吃到哑口无言"
         },
         {
+          "store_id": 4,
           "img": "nunu",
           "title":"努努的野外烤肉店",
           "score":4.3,
@@ -45,9 +52,11 @@
           "distance":1300,
           "start_send":15,
           "reply":"一起来和努努和威朗普烤肉吧！",
-          "discount":"6减6"
+          "discount":"6减6",
+          "notice": "碧波哈普，白玻啊喂，芭比八部，阿露露地哈（雪人语）"
         },
         {
+          "store_id": 5,
           "img": "peike",
           "title":"佩可莉姆节食餐厅",
           "score":4.9,
@@ -56,7 +65,8 @@
           "distance":1300,
           "start_send":15,
           "reply":"佩可莉姆只吃一勺",
-          "discount":"吃饭还想满减？"
+          "discount":"吃饭还想满减？",
+          "notice": "我怎么没有抽到水猫？玩毛？"
         }
       ]
     },

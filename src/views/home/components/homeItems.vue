@@ -1,6 +1,6 @@
 <template>
   <div id="home_items">
-    <div class="small_items" v-for="item in itemList">
+    <div class="small_items" v-for="item in itemList" @click="toList">
         <div>
             <img :src="item.img">
         </div>
@@ -15,7 +15,12 @@ export default {
         itemList:Array
     },
     created(){
-        console.log(this.itemList);
+        
+    },
+    methods:{
+        toList(){
+            this.$router.push('/categoryList')
+        }
     }
 }
 </script>

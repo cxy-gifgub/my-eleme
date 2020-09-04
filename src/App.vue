@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+      <transition name="fade" mode="out-in">
+    <keep-alive exclude="detail">
+        <router-view></router-view>
+    </keep-alive>
+      </transition>
     <maintabbar v-if="!this.$route.meta.navDontShow"></maintabbar>
   </div>
 </template>
@@ -18,5 +22,13 @@ export default {
 
 <style>
 @import "./assets/css/base.css";
-
+.fade-enter {
+   opacity: 0;
+}
+.fade-leave{
+　　opacity: 1;
+}
+.fade-leave-active,.fade-enter-active {
+　　transition:opacity 0.3s;
+}
 </style>

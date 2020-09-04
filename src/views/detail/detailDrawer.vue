@@ -6,7 +6,7 @@
       :size="size"
       :with-header="false">
       <div class="goods_block">
-        <div class="goods_img"><img :src="require('@/assets/img/home/kda.jpg')"></div>
+        <div class="goods_img"><img :src="goodInfo.img"></div>
         <div class="goods_info">
           <div class="goods_name">{{goodInfo.title}}</div>
           <div class="goods_hadChoose">已选</div>
@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     handleOn(index){
-      console.log(index);
       this.goodInfo = index;
       this.drawer = true
     },
@@ -53,7 +52,6 @@ export default {
       const product = {}
       for(let i = 0;i < this.goodInfo.specification_info.length;i++){
         if (this.$refs.goods[i].finish()) {
-          console.log(this.$refs.goods[i].finish());
           smalltags.push(this.$refs.goods[i].finish())
         }
       }
@@ -61,6 +59,7 @@ export default {
       product.price = this.goodInfo.price
       product.tags = smalltags
       product.id = this.goodInfo.id
+      product.img = this.goodInfo.img
       this.$store.commit('addCart',product)
       //重置小标签的值
       this.reset()

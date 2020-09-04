@@ -16,10 +16,10 @@
           {{this.$store.state.totalPrice}}
         </div>
         <div v-else>未选购商品</div>
-        <div>另需配送费￥1</div>
+        <div>另需配送费￥3</div>
       </div>
       <div v-if="this.$store.state.cartList.length>0" class="toast_action_a" @click="toOrder">去结算</div>
-      <div v-else class="toast_action">¥20起送</div>
+      <div v-else class="toast_action">¥5起送</div>
     </div>
   </div>
 </template>

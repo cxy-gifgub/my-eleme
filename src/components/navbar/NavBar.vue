@@ -18,9 +18,10 @@ export default {
         height: 44px;
         display: flex;
         text-align: center;
+        justify-content: space-between;
     }
     .left,.right{
-        width: 60px;
+        min-width: 60px;
     }
     .center{
         flex: 1;

@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .strip{
   display: flex;
   align-items: center;
@@ -47,5 +47,12 @@ export default {
   justify-content: center;
   color: #888;
   font-weight: 550;
+}
+.item_content{
+  padding: 1rem;
+  background-color: #ccc;
+  font-size: 0.8rem;
+  color: #888;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>

@@ -11,6 +11,7 @@
     "better-scroll": "^1.15.2",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
+    "mockjs": "^1.1.0",
     "store": "^2.0.12",
     "velocity-animate": "^1.5.2",
     "vue": "^2.6.11",

@@ -7,7 +7,8 @@ const store = new Vuex.Store({
   state: {
     cartList: [],
     totalPrice: 0,
-    productCount:0
+    productCount: 0,
+    addressList:[]
   },
   mutations: {
     addCart(state, payload) {
@@ -50,6 +51,9 @@ const store = new Vuex.Store({
         total += state.cartList[i].price * state.cartList[i].count;
         state.totalPrice = total
       }
+    },
+    addressAdd(state, list) {
+      state.addressList.push(list)
     }
   }
 })

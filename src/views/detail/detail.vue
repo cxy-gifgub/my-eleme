@@ -7,14 +7,14 @@
     <div class="store_message">
       <div class="mess_top">
         <div class="store_main">
-          <div class="store_name">标题</div>
+          <div class="store_name">{{store_info.title}}</div>
           <div class="store_send">饿了么专送</div>
         </div>
         <div class="store_img">
-          <img :src="require('@/assets/img/home/kda.jpg')">
+          <img :src="store_info.img">
         </div>
       </div>
-      <div class="store_noticc">公告：各位亲爱的客户您好，目前.................</div>
+      <div class="store_noticc">公告：{{store_info.notice}}</div>
       <div class="mess_bottom">
         <div class="store_discount">配送费优惠</div>
         <div class="store_discountNum">1个优惠</div>
@@ -37,13 +37,15 @@
               </scroll>
             </div>
           </div>
+          <detailToast @showcart="openCart" />
         </el-tab-pane>
-        <el-tab-pane label="评价" name="second">评价</el-tab-pane>
+        <el-tab-pane label="评价" name="second">
+          <detailEvaluate></detailEvaluate>
+        </el-tab-pane>
         <el-tab-pane label="商家" name="third">商家</el-tab-pane>
       </el-tabs>
     </div>
     <detailDrawer v-if="detailList" ref="drawer"></detailDrawer>
-    <detailToast @showcart="openCart" />
     <detailCart ref="cart" />
   </div>
 </template>
@@ -52,18 +54,22 @@
 import detailItem from '@/views/detail/detailItem'
 import scroll from '@/components/common/scroll/scroll'
 import {getStoreDetail} from '@/network/detail'; 
+import {getHomeListdata} from '@/network/home'; 
 import detailToast from '@/views/detail/detailToast'
 import detailDrawer from '@/views/detail/detailDrawer'
 import detailCart from '@/views/detail/detailCart'
 import NavBar from '@/components/navbar/NavBar'
+import detailEvaluate from '@/views/detail/detailEvaluate'
 export default {
+  name:"detail",
   components:{
     detailItem,
     scroll,
     detailToast,
     detailDrawer,
     detailCart,
-    NavBar
+    NavBar,
+    detailEvaluate
   },
   data(){
     return{
@@ -71,11 +77,13 @@ export default {
       detailList:[],
       ready:false,
       themeTopYs:[],
-      currentIndex:0
+      currentIndex:0,
+      store_info:{}
     }
   },
   created(){
     this.getDetail()
+    this.store_info = this.$route.query.store_info
   },
   mounted(){
     // this.themeTopYs.push(0);
@@ -89,7 +97,6 @@ export default {
         let nowList = res.data
         this.detailList = res.data
         this.ready = true;
-        console.log(this.detailList);
       })
     },
     handleClick(tab, event) {
@@ -107,12 +114,10 @@ export default {
         this.$refs.cart.drawerOn()
       }
       else return;
-
     }
-    
   },
   updated(){
-    if(this.themeTopYs.length>=this.detailList.length)returnks
+    if(this.themeTopYs.length>=this.detailList.length)return;
     for(let i=0;i<this.detailList.length;i++){
       this.themeTopYs.push(this.$refs.items[i].offsetTop)
     }
@@ -174,7 +179,7 @@ export default {
     border-radius: 10px;
   }
   .store_noticc{
-    word-break: keep-all;
+    white-space: nowrap;
     overflow: hidden;
     color: #aaa;
     font-size: 0.6rem;

@@ -3,7 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane  :name="item.name" v-for="item in tags" :key="item.name">
           <span slot="label">{{item.title}}</span>
-          <homeList v-if="tagsList[item.name].load" :acceptList="tagsList[item.name].list"></homeList>
+          <homeList v-if="tagsList[item.name].load" :acceptList="tagsList[item.name]"></homeList>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -45,12 +45,12 @@ import {getHomeListdata} from '@/network/home';
             },
         ],
         tagsList:{
-          'fujin':{page:1,list:[],load:false},
-          'lingshi':{page:1,list:[],load:false},
-          'chaoshi':{page:1,list:[],load:false},
-          'maicai':{page:1,list:[],load:false},
-          'baihuo':{page:1,list:[],load:false},
-          'shuiguo':{page:1,list:[],load:false}
+          'fujin':{tags:'fujin',page:1,list:[],load:false},
+          'lingshi':{tags:'lingshi',page:1,list:[],load:false},
+          'chaoshi':{tags:'chaoshi',page:1,list:[],load:false},
+          'maicai':{tags:'maicai',page:1,list:[],load:false},
+          'baihuo':{tags:'baihuo',page:1,list:[],load:false},
+          'shuiguo':{tags:'shuiguo',page:1,list:[],load:false}
         }
       };
     },
@@ -60,7 +60,6 @@ import {getHomeListdata} from '@/network/home';
     methods: {
       getHomeList(type){
         getHomeListdata(type).then(res=>{
-          console.log(res);
           this.tagsList[type].list = res.data[0].list;
           this.tagsList[type].load = true;
           for(let i = 0;i<this.tagsList[type].list.length;i++){
@@ -70,7 +69,6 @@ import {getHomeListdata} from '@/network/home';
       },
 
       handleClick(tab, event) {
-        console.log(tab, event);
         this.getHomeList(tab.name)
       }
     }
