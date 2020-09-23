@@ -49,7 +49,8 @@ export default {
     finish(){
       this.drawer = false;
       let smalltags = [];
-      const product = {}
+      const product = {};
+      console.log(this.goodInfo,'goodsinfo');
       for(let i = 0;i < this.goodInfo.specification_info.length;i++){
         if (this.$refs.goods[i].finish()) {
           smalltags.push(this.$refs.goods[i].finish())

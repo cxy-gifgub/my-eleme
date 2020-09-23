@@ -18,7 +18,6 @@ export default {
       return{
           currentIndex:-1,
           tags:"",
-
       }
   },
   methods:{

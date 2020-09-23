@@ -7,7 +7,15 @@
         </div>
         <div class="score_describe">
           <div  class="scroe_title">高于附近80%商家</div>
-          <div>❤❤❤❤</div>
+          <div>
+            <el-rate
+              v-model="score"
+              disabled
+              show-score
+              text-color="#ff9900"
+              score-template="{value}">
+            </el-rate>
+          </div>
         </div>
       </div>
       <div class="other_score">
@@ -60,7 +68,6 @@ export default {
   methods:{
     getStoreEvaluate(){
       getStoreEvaluate().then(res=>{
-        console.log(res,'=======================================');
         this.score = res.data.score;
         this.evaList = res.data.list
       })
